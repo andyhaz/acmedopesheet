@@ -15,6 +15,7 @@
 		975AB6F11CA20A02000132FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 975AB6EF1CA20A02000132FE /* Main.storyboard */; };
 		975AB6FC1CA20A03000132FE /* AcmeDopeSheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 975AB6FB1CA20A03000132FE /* AcmeDopeSheetTests.m */; };
 		975AB7071CA20A03000132FE /* AcmeDopeSheetUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 975AB7061CA20A03000132FE /* AcmeDopeSheetUITests.m */; };
+		975AB7161CA20B0E000132FE /* ADSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 975AB7151CA20B0E000132FE /* ADSheet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		975AB7021CA20A03000132FE /* AcmeDopeSheetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AcmeDopeSheetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		975AB7061CA20A03000132FE /* AcmeDopeSheetUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AcmeDopeSheetUITests.m; sourceTree = "<group>"; };
 		975AB7081CA20A03000132FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		975AB7141CA20B0E000132FE /* ADSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ADSheet.h; path = ../ADSheet.h; sourceTree = "<group>"; };
+		975AB7151CA20B0E000132FE /* ADSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ADSheet.m; path = ../ADSheet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,8 @@
 				975AB6E21CA20A02000132FE /* AppDelegate.m */,
 				975AB6E71CA20A02000132FE /* ViewController.h */,
 				975AB6E81CA20A02000132FE /* ViewController.m */,
+				975AB7141CA20B0E000132FE /* ADSheet.h */,
+				975AB7151CA20B0E000132FE /* ADSheet.m */,
 				975AB6ED1CA20A02000132FE /* Assets.xcassets */,
 				975AB6EF1CA20A02000132FE /* Main.storyboard */,
 				975AB6F21CA20A02000132FE /* Info.plist */,
@@ -270,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				975AB7161CA20B0E000132FE /* ADSheet.m in Sources */,
 				975AB6E91CA20A02000132FE /* ViewController.m in Sources */,
 				975AB6EC1CA20A02000132FE /* AcmeDopeSheet.xcdatamodeld in Sources */,
 				975AB6E61CA20A02000132FE /* main.m in Sources */,
