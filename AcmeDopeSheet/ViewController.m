@@ -23,11 +23,16 @@
 //add frames
     [DS ADSaddFrames:10];
 //    NSLog(@"dope sheet data:%@",[DS DopeSheetData]);
-//get single frame
- //   NSLog(@"DSD%@",[[DS DopeSheetData]objectAtIndex:2]);
-    int singleFrame = [DS ADSgetFrameFromRow:2];
-    NSLog(@"single frame:%d",singleFrame);
+    NSLog(@"DSD A :%@",[[DS DopeSheetData]objectAtIndex:2]);
 
-  NSLog(@"dope sheet data:%@",[DS DopeSheetData]);
+//update frame
+    [DS ADSupdateFrameData:3 frameVaule:2];
+//get single frame
+    NSLog(@"DSD B:%@",[[DS DopeSheetData]objectAtIndex:2]);
+  //  int singleFrame = [DS ADSgetFrameFromRow:2];
+ //   NSLog(@"single frame:%d",singleFrame);
+//update
+    
+//  NSLog(@"dope sheet data:%@",[DS DopeSheetData]);
 }
 @end

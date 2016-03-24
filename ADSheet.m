@@ -13,18 +13,20 @@
 #pragma mark - init
 -(id)init {
     if ( self = [super init] ) {
-        DopeSheetData = [[NSMutableArray alloc]initWithArray:[self getDefaultDopData]];
+        DopeSheetData = [[NSMutableArray alloc]initWithArray:[self getDefaultDoopData:1 timeVaule:1]];
     }
     return self;
 }//
 #pragma mark - add frame/time
 - (void)ADSaddFrames:(int)frameVaule{
     if(error == YES) NSLog(@"ADSaddFrames");
-    // int frameNumber = 1;
+    int frameNumber = 1;
     for (int i = 0; i < frameVaule; i++) {
-        [DopeSheetData addObject:[self getDefaultDopData]];
-    }
+        [DopeSheetData addObject:[self getDefaultDoopData:frameNumber timeVaule:1]];
+        frameNumber ++;
+    }//end for loop
 }
+
 - (void)ADSaddTimes:(int)frameVaule{
     if(error == YES) NSLog(@"ADSaddTimes");
 }
@@ -44,9 +46,10 @@
 
 #pragma mark - update data
 -(void)ADSupdateFrameData:(int)newVaule frameVaule:(int)frameVaule{
-    if(error == YES) NSLog(@"ADSupdateFrameData");
+    if(error == YES) NSLog(@"ADSupdateFrameData:%d frameVaule:%d",newVaule,frameVaule);
     [[self getDictanaryFromItem:frameVaule] setValue:[NSNumber numberWithInt:newVaule] forKey:@"Frame"];
 }
+//
 -(void)ADSupdateTimeData:(int)newVaule frameVaule:(int)frameVaule{
     if(error == YES) NSLog(@"ADSupdateTimeData");
     [[self getDictanaryFromItem:frameVaule] setValue:[NSNumber numberWithInt:newVaule] forKey:@"Time"];
@@ -63,6 +66,7 @@
     if(error == YES) NSLog(@"ADSupdateActionData");
     [[self getDictanaryFromItem:frameVaule] setValue:dataAry forKey:@"ActionData"];
 }
+
 #pragma mark -  get frames and time data
 -(NSArray*)ADSgatAllFrameRow{
     if(error == YES) NSLog(@"ADSgatAllFrameRow");
@@ -98,13 +102,13 @@
 }
 //
 #pragma mark - set updata array
--(NSMutableArray*)getDefaultDopData{
+-(NSMutableArray*)getDefaultDoopData:(int)frameVaule timeVaule:(int)time{
     NSMutableArray *actionDataAry = [[NSMutableArray alloc]init];
     NSMutableDictionary *defaultDataDic = [[NSMutableDictionary alloc] init];
     NSArray *tempDic = [[NSArray alloc] initWithObjects:@"ActionData", nil];
     BOOL keyFrame = NO;
-    [defaultDataDic setObject:[NSNumber numberWithInt:0000] forKey:@"Frame"];
-    [defaultDataDic setObject:[NSNumber numberWithInt:000000] forKey:@"Time"];
+    [defaultDataDic setObject:[NSNumber numberWithInt:frameVaule] forKey:@"Frame"];
+    [defaultDataDic setObject:[NSNumber numberWithInt:time] forKey:@"Time"];
     [defaultDataDic setObject:[NSNumber numberWithBool:keyFrame] forKey:@"KeyFrame"];
     [defaultDataDic setObject:@"" forKey:@"Action"];
     [defaultDataDic setObject:tempDic forKey:@"ActionData"];
@@ -117,7 +121,6 @@
 -(NSDictionary*)animationData {
     NSMutableDictionary *temp = [[NSMutableDictionary alloc]init];
     [temp setObject:[self ball] forKey:@"Ball"];
-    
     return temp;
 }
 -(NSArray*)ball{
