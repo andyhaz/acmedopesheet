@@ -33,15 +33,19 @@
 #pragma mark - remove from frame and time
 -(void)ADSremoveSingeFrame:(int)frameVaule{
     if(error == YES) NSLog(@"ADSremoveSingeFrame");
+    [DopeSheetData removeObjectAtIndex:frameVaule];
 }
 -(void)ADSremoveSingeTime:(int)frameVaule{
     if(error == YES) NSLog(@"ADSremoveSingeTime");
+    [DopeSheetData removeObjectAtIndex:frameVaule];
 }
 -(void)ADSremoveRangeOfFramesStart:(int)frameVaule endFrame:(int)endFrameVaule{
     if(error == YES) NSLog(@"ADSremoveRangeOfFramesStart");
+    [DopeSheetData removeObjectsInRange:NSMakeRange(frameVaule, endFrameVaule)];
 }
 -(void)ADSremoveRangOfTimeStart:(int)frameVaule endTime:(int)endTimeVaule{
     if(error == YES) NSLog(@"ADSremoveRangOfTimeStart");
+    [DopeSheetData  removeObjectsInRange:NSMakeRange(frameVaule, endTimeVaule)];
 }
 
 #pragma mark - update data
@@ -49,7 +53,6 @@
     if(error == YES) NSLog(@"ADSupdateFrameData:%d frameVaule:%d",newVaule,frameVaule);
     [[self getDictanaryFromItem:frameVaule] setValue:[NSNumber numberWithInt:newVaule] forKey:@"Frame"];
 }
-//
 -(void)ADSupdateTimeData:(int)newVaule frameVaule:(int)frameVaule{
     if(error == YES) NSLog(@"ADSupdateTimeData");
     [[self getDictanaryFromItem:frameVaule] setValue:[NSNumber numberWithInt:newVaule] forKey:@"Time"];
@@ -100,7 +103,7 @@
     if(error == YES) NSLog(@"ADSgetActionDataFromRow");
     return [[self getDictanaryFromItem:frameVaule] objectForKey:@"ActionData"];
 }
-//
+
 #pragma mark - set updata array
 -(NSMutableArray*)getDefaultDoopData:(int)frameVaule timeVaule:(int)time{
     NSMutableArray *actionDataAry = [[NSMutableArray alloc]init];
@@ -117,12 +120,13 @@
     
     return actionDataAry;
 }//end get Default
-///////
+
 -(NSDictionary*)animationData {
     NSMutableDictionary *temp = [[NSMutableDictionary alloc]init];
     [temp setObject:[self ball] forKey:@"Ball"];
     return temp;
 }
+//
 -(NSArray*)ball{
     NSArray *ball = [[NSArray alloc] initWithObjects:@"Ball Data", nil];
     return ball;
