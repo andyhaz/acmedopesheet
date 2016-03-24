@@ -5,97 +5,77 @@
 //  Created by andrew hazlett on 3/22/16.
 //  Copyright © 2016 andrew hazlett. All rights reserved.
 //
-/*
- -(void) ADSinitFrame;
- -(void) ADSSetFrame:(int)frameVaule;
- -(void) ADSSetTime:(int)timeVaule;
+/********************************************************
+ Name:ACME Dope Sheet
+ Version:0.1
+ forVaule
+ init
+    setuu vaules to use
+
+ update data
+    update frame (updateFrameData forVaule)
+    update time (updateTimeData forVaule)
+    update key frame (updateKeyFrame forVaule)
+    update actions (updateActionData forVaule)
+    update action data (updateActionData forVaule)
  
- -(void) ADSRemoveFrame:(int)frameVaule;
- -(void) ADSgetFrameFromTime:(int)frameVaule;
- 
- -(void) ADSgetTimeFromFrame:(int)frameVaule;
- 
- -(void) ADSgetFrameVaules:(int)frameVaule;
- -(void) ADSgetActionVaule:(int)frameVaule;
- -(void) ADSgetActionKeys:(int) frameVaule;
- -(void) ADSgetActionDataVaule:(int) frameVaule;
- 
- -(void) ADSSetActionVaule:(NSString*)actionString  forFrame:(int)frameVaule;
- -(void) ADSSetActionDataVaule:(NSArray*)actionArray forFrame:(int)frameVaule;
+ get Vaules
+    get all frame row (gatAllFrameRow)
+    get all time row (getAlltimeRow)
+    get all key actions row (getAllActionRow)
+    get all actions row (getAllActionRow)
+    get single frame from row (getFrameFromRow)
+    get single time from row (getTimeFromRow)
+    get single key frame from row (getKeyFrameFromRow)
+    get single from actions (getKeyActionFromRow)
+    get single from actionData (getActionDataFromRow)
  */
 #import <Foundation/Foundation.h>
 
 @interface ADSheet : NSObject
 /***********************************************
- 
+ Set FTP to use
+ ***********************************************/
+@property (nonatomic) NSMutableArray *DopeSheetData;
+/***********************************************
+YES Enables error handling with vaules
  ***********************************************/
 @property (nonatomic) BOOL error;
 /***********************************************
- 
+ Set FTP to use
  ***********************************************/
 @property (nonatomic) int ADSftp;
 /***********************************************
- 
+ add frame (ADSaddFrames - Vaule)
+ add time  (ADSaddTimes - Vaule)
 ***********************************************/
-@property (nonatomic) NSArray *ADSFrameRow;
-@property (nonatomic) NSArray *ADSTimeRow;
-@property (nonatomic) NSArray *ADSKeyFrameRow;
-@property (nonatomic) NSArray *ADSActionRow;
-@property (nonatomic) NSArray *ADSActionDataRow;
+- (void)ADSaddFrames:(int)frameVaule;
+- (void)ADSaddTimes:(int)frameVaule;
 /***********************************************
-
-***********************************************/
--(void) ADSinitFrame;
-/***********************************************
- 
-***********************************************/
--(void) ADSSetFrame:(int)frameVaule;
-/***********************************************
- 
-***********************************************/
--(void) ADSSetTime:(int)timeVaule;
-/***********************************************
- 
-***********************************************/
--(void) ADSSetActionVaule:(NSString*)actionString  forFrame:(int)frameVaule;
-/***********************************************
- 
-***********************************************/
--(void) ADSSetActionDataVaule:(NSArray*)actionArray forFrame:(int)frameVaule;
-/***********************************************
- 
-***********************************************/
--(void) ADSSetKeyFrame:(BOOL)keyFrame forFrame:(int)frameVaule;
-/***********************************************
- 
-***********************************************/
--(void) ADSRemoveFrame:(int)frameVaule;
-/***********************************************
- 
-***********************************************/
--(int)  ADSgetFrameFromTime:(int)frameVaule;
-/***********************************************
- 
-***********************************************/
--(int)  ADSgetTimeFromFrame:(int)frameVaule;
-/***********************************************
- 
+ remove from frame and time
  ***********************************************/
--(int)      ADSgetFrameVaules:(int) frameVaule;
+-(void)ADSremoveSingeFrame:(int)frameVaule;
+-(void)ADSremoveSingeTime:(int)frameVaule;
+-(void)ADSremoveRangeOfFramesStart:(int)frameVaule endFrame:(int)endFrameVaule;
+-(void)ADSremoveRangOfTimeStart:(int)frameVaule endTime:(int)endTimeVaule;
 /***********************************************
- 
-***********************************************/
--(NSString*)ADSgetActionVaule:(int) frameVaule;
+update data
+ ***********************************************/
+-(void)ADSupdateFrameData:(int)newVaule frameVaule:(int)frameVaule;
+-(void)ADSupdateTimeData:(int)newVaule frameVaule:(int)frameVaule;
+-(void)ADSupdateKeyFrame:(BOOL)newVaule frameVaule:(int)frameVaule;
+-(void)ADSupdateAction:(NSString*)dataAry frameVaule:(int)frameVaule;
+-(void)ADSupdateActionData:(NSArray*)dataAry frameVaule:(int)frameVaule;
 /***********************************************
- 
-***********************************************/
--(BOOL)     ADSgetKeyFrameForVaule:(int) frameVaule;
-/***********************************************
- 
-***********************************************/
--(NSArray*) ADSgetActionKeys:(int) frameVaule;
-/***********************************************
- 
-***********************************************/
--(NSArray*) ADSgetActionDataVaule:(int) frameVaule;
+get frames and time data
+ ***********************************************/
+-(NSArray*)ADSgatAllFrameRow;
+-(NSArray*)ADSgetAlltimeRow;
+-(NSString*)ADSgetAllActionRow;
+-(int)ADSgetFrameFromRow:(int)frameVaule;
+-(int)ADSgetTimeFromRow:(int)frameVaule;
+-(BOOL)ADSgetKeyFrameFromRow:(int)frameVaule;
+-(NSString*)ADSgetKeyActionFromRow:(int)frameVaule;
+-(NSArray*)ADSgetActionDataFromRow:(int)frameVaule;
+///
 @end

@@ -13,20 +13,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  //  NSMutableArray *dopeSheet = [[NSMutableArray alloc]initWithArray:[self getFrame:1 Time:000000]];
-  //  NSLog(@"dope sheet:%@",dopeSheet);
-    // Do any additional setup after loading the view.
+// Do any additional setup after loading the view.
     ADSheet *DS = [[ADSheet alloc]init];
+//  NSLog(@"DS:%@",[DS DopeSheetData]);
+//
     [DS setError:YES];
+//set ftp settings
     [DS setADSftp:24];
-    [DS ADSinitFrame];
+//add frames
+    [DS ADSaddFrames:10];
+//    NSLog(@"dope sheet data:%@",[DS DopeSheetData]);
+//get single frame
+ //   NSLog(@"DSD%@",[[DS DopeSheetData]objectAtIndex:2]);
+    int singleFrame = [DS ADSgetFrameFromRow:2];
+    NSLog(@"single frame:%d",singleFrame);
+
+  NSLog(@"dope sheet data:%@",[DS DopeSheetData]);
 }
-
-- (void)setRepresentedObject:(id)representedObject {
-    [super setRepresentedObject:representedObject];
-
-    // Update the view, if already loaded.
-}
-
-
 @end

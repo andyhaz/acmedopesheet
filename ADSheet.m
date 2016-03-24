@@ -9,86 +9,123 @@
 #import "ADSheet.h"
 
 @implementation ADSheet
-@synthesize error;
--(void) ADSinitFrame{
-    if(error == YES) NSLog(@"ADSinitFrame");
+@synthesize error,ADSftp,DopeSheetData;
+#pragma mark - init
+-(id)init {
+    if ( self = [super init] ) {
+        DopeSheetData = [[NSMutableArray alloc]initWithArray:[self getDefaultDopData]];
+    }
+    return self;
+}//
+#pragma mark - add frame/time
+- (void)ADSaddFrames:(int)frameVaule{
+    if(error == YES) NSLog(@"ADSaddFrames");
+    // int frameNumber = 1;
+    for (int i = 0; i < frameVaule; i++) {
+        [DopeSheetData addObject:[self getDefaultDopData]];
+    }
 }
--(void) ADSSetFrame:(int)frameVaule{
-    if(error == YES) NSLog(@"ADSSetFrame:%d",frameVaule);
+- (void)ADSaddTimes:(int)frameVaule{
+    if(error == YES) NSLog(@"ADSaddTimes");
 }
--(void) ADSSetTime:(int)timeVaule{
-    if(error == YES) NSLog(@"ADSSetTime:%d",timeVaule);
+#pragma mark - remove from frame and time
+-(void)ADSremoveSingeFrame:(int)frameVaule{
+    if(error == YES) NSLog(@"ADSremoveSingeFrame");
 }
--(void) ADSSetActionVaule:(NSString*)actionString  forFrame:(int)frameVaule{
-    if(error == YES) NSLog(@"ADSSetActionVaule:%@ forFrame:%d",actionString,frameVaule);
+-(void)ADSremoveSingeTime:(int)frameVaule{
+    if(error == YES) NSLog(@"ADSremoveSingeTime");
 }
--(void) ADSSetActionDataVaule:(NSArray*)actionArray forFrame:(int)frameVaule{
-    if(error == YES) NSLog(@"ADSSetActionDataVaule:%@ forFrame:%d",actionArray,frameVaule);
+-(void)ADSremoveRangeOfFramesStart:(int)frameVaule endFrame:(int)endFrameVaule{
+    if(error == YES) NSLog(@"ADSremoveRangeOfFramesStart");
 }
--(void) ADSRemoveFrame:(int)frameVaule{
-    if(error == YES) NSLog(@"ADSRemoveFrame:%d",frameVaule);
+-(void)ADSremoveRangOfTimeStart:(int)frameVaule endTime:(int)endTimeVaule{
+    if(error == YES) NSLog(@"ADSremoveRangOfTimeStart");
 }
--(void) ADSSetKeyFrame:(BOOL)keyFrame forFrame:(int)frameVaule{
-    if(error == YES) NSLog(@"ADSSetKeyFrame:%d",frameVaule);
+
+#pragma mark - update data
+-(void)ADSupdateFrameData:(int)newVaule frameVaule:(int)frameVaule{
+    if(error == YES) NSLog(@"ADSupdateFrameData");
+    [[self getDictanaryFromItem:frameVaule] setValue:[NSNumber numberWithInt:newVaule] forKey:@"Frame"];
 }
--(int) ADSgetFrameFromTime:(int)frameVaule{
-    if(error == YES) NSLog(@"ADSgetFrameFromTime:%d",frameVaule);
-    return 0;
+-(void)ADSupdateTimeData:(int)newVaule frameVaule:(int)frameVaule{
+    if(error == YES) NSLog(@"ADSupdateTimeData");
+    [[self getDictanaryFromItem:frameVaule] setValue:[NSNumber numberWithInt:newVaule] forKey:@"Time"];
 }
--(int) ADSgetTimeFromFrame:(int)frameVaule{
-    if(error == YES) NSLog(@"ADSgetTimeFromFrame:%d",frameVaule);
-    return 0;
+-(void)ADSupdateKeyFrame:(BOOL)newVaule frameVaule:(int)frameVaule{
+    if(error == YES) NSLog(@"ADSupdateKeyFrame");
+    [[self getDictanaryFromItem:frameVaule] setValue:[NSNumber numberWithBool:newVaule] forKey:@"KeyFrame"];
 }
--(int) ADSgetFrameVaules:(int) frameVaule{
-    if(error == YES) NSLog(@"ADSgetFrameVaules:%d",frameVaule);
-    return 0;
+-(void)ADSupdateAction:(NSString*)dataAry frameVaule:(int)frameVaule{
+    if(error == YES) NSLog(@"ADSupdateAction");
+    [[self getDictanaryFromItem:frameVaule] setValue:dataAry forKey:@"Action"];
 }
--(NSString*)ADSgetActionVaule:(int) frameVaule{
-    if(error == YES) NSLog(@"ADSgetActionVaule:%d",frameVaule);
-    return NULL;
+-(void)ADSupdateActionData:(NSArray*)dataAry frameVaule:(int)frameVaule{
+    if(error == YES) NSLog(@"ADSupdateActionData");
+    [[self getDictanaryFromItem:frameVaule] setValue:dataAry forKey:@"ActionData"];
 }
--(BOOL)ADSgetKeyFrameForVaule:(int) frameVaule{
-    if(error == YES) NSLog(@"ADSgetKeyFrameForVaule:%d",frameVaule);
-    return YES;
+#pragma mark -  get frames and time data
+-(NSArray*)ADSgatAllFrameRow{
+    if(error == YES) NSLog(@"ADSgatAllFrameRow");
+    return [DopeSheetData valueForKey:@"Frame"];
 }
--(NSArray*)ADSgetActionKeys:(int) frameVaule{
-    if(error == YES) NSLog(@"ADSgetActionKeys:%d",frameVaule);
-    return NULL;
+-(NSArray*)ADSgetAlltimeRow{
+    if(error == YES) NSLog(@"ADSgetAlltimeRow");
+    return [DopeSheetData valueForKey:@"Frame"];
 }
--(NSArray*) ADSgetActionDataVaule:(int) frameVaule{
-    if(error == YES) NSLog(@"ADSgetActionDataVaule:%d",frameVaule);
-    return NULL;
+-(NSString*)ADSgetAllActionRow{
+    if(error == YES) NSLog(@"ADSgetAllActionRow");
+    return [DopeSheetData valueForKey:@"Frame"];
+}
+-(int)ADSgetFrameFromRow:(int)frameVaule{
+    if(error == YES) NSLog(@"ADSgetFrameFromRow:%d",frameVaule);
+    return [[[self getDictanaryFromItem:frameVaule] objectForKey:@"Frame"] intValue];
+}
+-(int)ADSgetTimeFromRow:(int)frameVaule{
+    if(error == YES) NSLog(@"ADSgetTimeFromRow");
+    return [[[self getDictanaryFromItem:frameVaule] objectForKey:@"Time"] intValue];
+}
+-(BOOL)ADSgetKeyFrameFromRow:(int)frameVaule{
+    if(error == YES) NSLog(@"ADSgetKeyFrameFromRow");
+    return [[[self getDictanaryFromItem:frameVaule] objectForKey:@"KeyFrane"] boolValue];
+}
+-(NSString*)ADSgetKeyActionFromRow:(int)frameVaule{
+    if(error == YES) NSLog(@"ADSgetKeyActionFromRow");
+    return [[self getDictanaryFromItem:frameVaule] objectForKey:@"Action"];
+}
+-(NSArray*)ADSgetActionDataFromRow:(int)frameVaule{
+    if(error == YES) NSLog(@"ADSgetActionDataFromRow");
+    return [[self getDictanaryFromItem:frameVaule] objectForKey:@"ActionData"];
 }
 //
 #pragma mark - set updata array
--(NSArray*)getFrame:(int)DPFrame Time:(int)DPTime {
-    NSMutableArray *tempAry = [[NSMutableArray alloc]init];
-    NSMutableDictionary *tempDir = [[NSMutableDictionary alloc]initWithDictionary:[self getDefault]];
-    [tempDir setObject:[NSNumber numberWithInt:DPFrame] forKey:@"Frame"];
-    [tempDir setObject:[NSNumber numberWithInt:DPTime] forKey:@"Time"];
-    [tempAry addObject:tempDir];
-    return tempAry;
-}
-
--(NSDictionary*)getDefault{
-    NSMutableDictionary *defaultData = [[NSMutableDictionary alloc] init];
-    [defaultData setObject:[NSNumber numberWithInt:0000] forKey:@"Frame"];
-    [defaultData setObject:[NSNumber numberWithInt:000000] forKey:@"Time"];
-    [defaultData setObject:@"" forKey:@"Action"];
-    [defaultData setObject:[self animationData] forKey:@"actionData"];
+-(NSMutableArray*)getDefaultDopData{
+    NSMutableArray *actionDataAry = [[NSMutableArray alloc]init];
+    NSMutableDictionary *defaultDataDic = [[NSMutableDictionary alloc] init];
+    NSArray *tempDic = [[NSArray alloc] initWithObjects:@"ActionData", nil];
+    BOOL keyFrame = NO;
+    [defaultDataDic setObject:[NSNumber numberWithInt:0000] forKey:@"Frame"];
+    [defaultDataDic setObject:[NSNumber numberWithInt:000000] forKey:@"Time"];
+    [defaultDataDic setObject:[NSNumber numberWithBool:keyFrame] forKey:@"KeyFrame"];
+    [defaultDataDic setObject:@"" forKey:@"Action"];
+    [defaultDataDic setObject:tempDic forKey:@"ActionData"];
     
-    return defaultData;
+    [actionDataAry addObject:defaultDataDic];
+    
+    return actionDataAry;
 }//end get Default
-
+///////
 -(NSDictionary*)animationData {
     NSMutableDictionary *temp = [[NSMutableDictionary alloc]init];
     [temp setObject:[self ball] forKey:@"Ball"];
     
     return temp;
 }
-
 -(NSArray*)ball{
     NSArray *ball = [[NSArray alloc] initWithObjects:@"Ball Data", nil];
     return ball;
+}
+-(NSDictionary*)getDictanaryFromItem:(int)row{
+    NSArray *temp = [[NSArray alloc] initWithArray:DopeSheetData[row]];
+    return temp[0];
 }
 @end

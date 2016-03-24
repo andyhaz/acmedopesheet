@@ -502,6 +502,7 @@
 				975AB70D1CA20A03000132FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		975AB70E1CA20A03000132FE /* Build configuration list for PBXNativeTarget "AcmeDopeSheetTests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +511,7 @@
 				975AB7101CA20A03000132FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		975AB7111CA20A03000132FE /* Build configuration list for PBXNativeTarget "AcmeDopeSheetUITests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +520,7 @@
 				975AB7131CA20A03000132FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
